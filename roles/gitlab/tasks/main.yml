@@ -1,0 +1,21 @@
+---
+- name: update packages
+  apt: update_cache
+
+- name: install packages
+  apt: name={{item}}
+  with_items: packages
+
+- name: add the gitlab server
+  command: curl {{gitlab_server}} | sh
+  sudo: yes
+
+- name: install gitlab
+  apt: name={{gitlab_package}} update_cache=yes state=present
+
+- name: replace gitlab.rb
+  template: src='gitlab.rb' dest={{gitlab_dir}}
+  notify:
+    - gitlab-ctl reconfigure
+    - gitlab-ctl restart
+  sudo: yes

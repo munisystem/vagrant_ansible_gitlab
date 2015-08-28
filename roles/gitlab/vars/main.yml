@@ -1,0 +1,14 @@
+---
+packages:
+    - curl
+    - wget
+    - vim
+    - openssh-server
+    - postfix
+    - ca-certificant
+
+gitlab_server: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+
+gitlab_package: gitlab-ce
+
+gitlab_dir: /etc/gitlab
