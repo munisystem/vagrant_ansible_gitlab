@@ -1,17 +1,16 @@
 ---
 - name: update packages
-  apt: update_cache
+  apt: update_cache=yes
 
 - name: install packages
   apt: name={{item}}
   with_items: packages
 
 - name: add the gitlab server
-  command: curl {{gitlab_server}} | sh
-  sudo: yes
+  shell: "curl {{gitlab_server}} | sudo bash"
 
 - name: install gitlab
-  apt: name={{gitlab_package}} update_cache=yes state=present
+  apt: name=gitlab-ce update_cache=yes state=latest
 
 - name: replace gitlab.rb
   template: src='gitlab.rb' dest={{gitlab_dir}}

@@ -5,7 +5,7 @@ packages:
     - vim
     - openssh-server
     - postfix
-    - ca-certificant
+    - ca-certificates
 
 gitlab_server: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
 
